@@ -6,6 +6,7 @@ import {
 
 import "./sign-up-form.style.scss";
 import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
 
 const SignUp = () => {
   const defaultFormFields = {
@@ -22,6 +23,8 @@ const SignUp = () => {
     setFormFilds({ ...formFilds, [name]: value });
   };
 
+  const restFormFields = () => setFormFilds(defaultFormFields);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) alert("palavra-passe nao corresponde");
@@ -31,12 +34,10 @@ const SignUp = () => {
         password
       );
       await createUserDocumentFromAuth(user, { displayName });
-      setFormFilds(defaultFormFields);
+      restFormFields();
     } catch (error) {
-      if (error.code === "auth/email-already-in-use")
-        alert("email ja em utilizaçao");
-      switch (error) {
-        case error.code === "auth/email-already-in-use":
+      switch (error.code) {
+        case "auth/email-already-in-use":
           alert("email ja em utilizaçao");
           break;
 
@@ -47,7 +48,7 @@ const SignUp = () => {
   };
   return (
     <div className="sign-up-container">
-      <h2>Nao tem uma conta</h2>
+      <h1>Nao tem uma conta ?</h1>
       <span>Cadastra-se com email e password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -86,7 +87,7 @@ const SignUp = () => {
           name="confirmPassword"
         />
 
-        <button type="submit">Cadastrar </button>
+        <Button type="submit">Cadastrar </Button>
       </form>
     </div>
   );
