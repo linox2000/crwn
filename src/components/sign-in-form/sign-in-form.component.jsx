@@ -1,6 +1,5 @@
 import {
   signInWithGoogePopup,
-  createUserDocumentFromAuth,
   signUserAuthWithEmailAndPassword,
 } from "../../firebase/utilits";
 import { useState } from "react";
@@ -9,9 +8,8 @@ import Button from "../button/button.component";
 import "./sign-in-form.style.scss";
 
 const SignIn = () => {
-
   const signInWithGoogle = async () => {
-     await signInWithGoogePopup();
+    await signInWithGoogePopup();
   };
 
   const defaultFormFields = {
