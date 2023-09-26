@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div>
       <Outlet />
-      <div className="categories-container ">
+      <div className="directory-item-container ">
         {categories.map(({ title, imageUrl, id, large }) => (
           <div key={id} className={`category-container ${large}`}>
             <div
@@ -18,7 +18,7 @@ const Home = () => {
                 backgroundImage: `url(${imageUrl})`,
               }}
             />
-            <div className="category-body-container ">
+            <div className="body ">
               <h2>{title}</h2>
               <p>Comprar Agora</p>
             </div>

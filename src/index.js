@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { CategoryProvider } from "./context/category.context";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/user.context";
-import { ProductProvider } from "./context/product.context";
+import { CategoriesProvider } from "./context/categories.context";
 import { CartProvider } from "./context/cart.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,11 +15,11 @@ root.render(
     <BrowserRouter>
       <CategoryProvider>
         <UserProvider>
-          <ProductProvider>
+          <CategoriesProvider>
             <CartProvider>
               <App />
             </CartProvider>
-          </ProductProvider>
+          </CategoriesProvider>
         </UserProvider>
       </CategoryProvider>
     </BrowserRouter>
