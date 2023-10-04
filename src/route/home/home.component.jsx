@@ -1,31 +1,22 @@
-import { useContext } from "react";
-import { CategoryContext } from "../../context/category.context";
-import { Outlet } from "react-router-dom";
-import "./home.styles.scss";
+import { Category, BackgroundImage, Body } from "./home.styles.jsx";
 
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
-  const { categories } = useContext(CategoryContext);
+const Home = ({ category }) => {
+  const { title, imageUrl, large, route } = category;
+  
+  const navigate = useNavigate();
+
+  const onNavigateHandler = () => navigate(route);
+
   return (
-    <div>
-      <Outlet />
-      <div className="directory-item-container ">
-        {categories.map(({ title, imageUrl, id, large }) => (
-          <div key={id} className={`category-container ${large}`}>
-            <div
-              className="background-image"
-              style={{
-                backgroundImage: `url(${imageUrl})`,
-              }}
-            />
-            <div className="body ">
-              <h2>{title}</h2>
-              <p>Comprar Agora</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Category large={large} onClick={onNavigateHandler}>
+      <BackgroundImage imageUrl={imageUrl} />
+      <Body>
+        <h2>{title}</h2>
+        <p>Comprar Agora</p>
+      </Body>
+    </Category>
   );
 };
 
